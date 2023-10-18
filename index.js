@@ -24,11 +24,58 @@ console.log(Number(true) < 3)
 // 0 !== false is true  --> strict unequality
 // 0 1= false true
 
+// all of the lack of existence values are false
 // Existence and Boolean
 
 // Boolean(undefined) = false
 // Boolean(null) = false
 // Boolean('') = false
+
+let a;
+
+a = 'h'
+if (a) {
+    console.log('hello world')
+}
+
+// 'hi' || 'hello' returns first true which is 'hi'
+
+// // OBJECTS AND FUNCTIONS
+// // it is the way that we can add elements to our objects
+// let person = new Object()
+// person["firstname"] = "Resul";
+// person["lastname"] = "Avsar";
+// console.log(person);
+// // To add sub-objects we can use this way:
+// person.address = new Object();
+// person.address.street = "via Garibaldi"
+// person.address.city = "Catania"
+// person.address["number"] = 21
+// console.log(person.address);
+
+// OBJECT LITERALS
+// let person = {"name":"Resul", "lastname":"avsar"};
+// console.log(person);
+
+// let newObject = {}
+// newObject.el1 = "a"
+// newObject.el2 = "b"
+// newObject.el3 = {}
+// newObject.el3.el1 = "d"
+// console.log(newObject)
+
+let objectLiterals = {
+    firstName: "Resul",
+    isAProgrammer: true
+}
+console.log(JSON.stringify(objectLiterals)) // will convert it to a string
+
+// // a valid object literal syntax
+// let jsonVlue = {
+//     "firstname": "Resul",
+//     "isAProgrammer": true
+// }
+// console.log(JSON.parse(jsonVlue))
 
 
 
