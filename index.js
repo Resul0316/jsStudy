@@ -258,6 +258,45 @@ let greeting3 = function(name) {
 // }()) // i don't know why but it doesn't work
  
 // ******************
+// closures
+// this topic is a bit confusing so I can check it later // 47-48
+function buildFunctions() {
+    var arr = [];
+    for (var i= 0; i<3; i++) {
+        arr.push(
+            function() {
+                console.log(i)
+            }
+        )
+    }
+    return arr;
+}
+let fs = buildFunctions();
+// these all three function calls will return 3 because when they are executed the result is alredy 3. 
+fs[0]()
+fs[1]()
+fs[2]()
+
+// Correct way of doing it:
+function buildFunctions2() {
+    var arr = [];
+    for (var i= 0; i<3; i++) {
+        arr.push(
+            (function(j) {
+                return function() {
+                    console.log(j); // in this way we are keeping it every time in a different execution context
+                }
+            }(i))
+        )
+    }
+    return arr;
+}
+let fs2 = buildFunctions2();
+fs2[0]()
+fs2[1]()
+fs2[2]()
+
+// ******************
 
 
 
