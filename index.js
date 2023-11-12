@@ -135,6 +135,8 @@ anotherGreet()
 // console.log(d)
 // console.log(e)
 
+// ***********************************************************
+
 // OBJECTS FUNCTIONS AND THIS // 38
 
 // Pointing the global objects with this inside the functions. Whenever we create a function or fuction expression it will point the global object!
@@ -206,3 +208,62 @@ const studyMethodCorrect = {
 }
 
 studyMethodCorrect.log()
+// ***********************************************************
+
+// ******************
+// Arrays
+let arr = [
+    1,
+    false,
+    {
+        name: 'Resul',
+        address: 'via garibaldi'
+    },
+    function(name) {
+        let greetings = 'Hello ';
+        console.log(greetings + name)
+    },
+    'hey'
+]
+console.log(arr)
+arr[3]('Mustafa')
+// ******************
+// immediately Invoked functions expressions(IIFE): // 45
+
+// function statement
+function greeting(name) {
+    console.log('Hello, this is a function statement', name)
+}
+// function expression
+let greeting2 = function(name) {
+    console.log('Hello, this is a function expression', name)
+}
+greeting('resul')
+greeting2('mustafa')
+
+// Here is the exact example of IIFE:
+let greeting3 = function(name) {
+    console.log('I am IIFE', name);
+}('function')
+
+// this piece of code will give a syntax error:
+// function(name) {
+//     console.log('I am an error')
+// }
+
+// if we wrap it inside the brakets () the error dissappears and it becames a valid syntax for js!
+// in this way it becomes function expression
+// (function(name) {
+//     return console.log('I am the correct form ', name)
+// }()) // i don't know why but it doesn't work
+ 
+// ******************
+
+
+
+
+
+
+
+
+
