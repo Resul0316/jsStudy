@@ -258,6 +258,8 @@ let greeting3 = function(name) {
 // }()) // i don't know why but it doesn't work
  
 // ******************
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
+// https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36
 // closures
 // this topic is a bit confusing so I can check it later // 47-48
 function buildFunctions() {
