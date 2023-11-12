@@ -77,8 +77,104 @@ console.log(JSON.stringify(objectLiterals)) // will convert it to a string
 // }
 // console.log(JSON.parse(jsonVlue))
 
+// FUNCTIONS ARE OBJECTS
+let greet = () => {
+    console.log('Hello')
+}
+// considering functions are object is JS -> we can do:
 
+// greet.person1 = 'Person1 greetings'
+// console.log(greet())
+// console.log(greet)
+// console.log(greet.person1) // that is how I can add an onject to my function. Because FUnctions are objects
 
+// FUNCTION STATEMENTS AND FUNCTION EXPRESSIONS
 
+// functions are always in the memory and we can call them even before they declared such as;
+beforeCall()
+function beforeCall() {
+    console.log('hi')
+}
+// but for this one we can't do the same issua becasue we declare first name. Because here it see first variable not function. So it doesn't take it to memory.
+let anotherGreet = () => {
+    console.log('hi')
+}
+anotherGreet()
+// // NOTE!
+// // mutate: To change something.
+// // inmutable means : cannot be changed
+
+// // By Value vs by reference
+// // by value (prmitives)
+// let c = 3
+// let b;
+// b = c
+// c = 2
+// console.log(b)
+// console.log(c)
+// // by refenrence (all objects(including functions))
+// let d = {"greeting":"hey"}
+// let e;
+// e = d
+// d.greeting = 'you there' // mutate
+// // both of them will change because they are pointing some location in memory
+// console.log(d)
+// console.log(e)
+
+// // by refenrence as a parameter
+// function changeGreeting(obj) {
+//     obj.greeting = 'ahahaah' // mutate
+// }
+
+// changeGreeting(e); // we have mutate the values of e and d
+// console.log(d)
+// console.log(e)
+
+// // Equals operator sets up new memory space (new address)
+// e = {'greeting': 'howdy'}
+// console.log(d)
+// console.log(e)
+
+// OBJECTS FUNCTIONS AND THIS // 38
+
+// Pointing the global objects with this inside the functions. Whenever we create a function or fuction expression it will point the global object!
+// Example:
+function a2() {
+    console.log(this, 'this from a2()');
+    this.newVariable = 'Hello' // we are attaching it to the global object
+}
+a2()
+
+let ab = function() {
+    console.log(this, 'this from ab()')
+}
+ab()
+
+// this case is a method in an object. Check the log 
+var abc = {
+    name: 'this is abc object',
+    // change name
+    log: function() {
+        var self  = this;
+
+        self.name = 'updated abc object';
+        console.log(self, 'from log')
+
+        // in this way it points the global object and we can find it through window. if we don't want to change it globally we have to follow the step with SELF!
+    //     var setname = function(newname) {
+    //         self.name = newname;
+    //     }
+    //     setname('updated again! abc object');
+    //     console.log(self);
+    // }
+        var setname = function(newname) {
+            self.name = newname;
+        }
+        setname('updated again! abc object');
+        console.log(self);
+    }
+}
+
+abc.log()
 
 
