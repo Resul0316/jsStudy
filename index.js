@@ -162,10 +162,10 @@ var abc = {
 
         // in this way it points the global object and we can find it through window. if we don't want to change it globally we have to follow the step with SELF!
     //     var setname = function(newname) {
-    //         self.name = newname;
+    //         this.name = newname;
     //     }
     //     setname('updated again! abc object');
-    //     console.log(self);
+    //     console.log(this);
     // }
         var setname = function(newname) {
             self.name = newname;
@@ -174,7 +174,35 @@ var abc = {
         console.log(self);
     }
 }
-
 abc.log()
 
+// method in object
 
+
+const studyMethodFalse = {
+    first: 'this is the first element',
+    log: function() {
+        console.log(this, '123')
+        let changeVariable = function(newVar) {
+            this.first = newVar
+        }
+        changeVariable('this is the second changed element') // in this way we see it in the window object globally
+    }
+}
+studyMethodFalse.log()
+
+// we have to follow this steps:
+const studyMethodCorrect = {
+    first: 'Hello from the first element!',
+    log: function() {
+        let self = this
+        console.log(self, 'self')
+        
+        let changeVariable = function(newVar) {
+            self.first = newVar
+        }
+        changeVariable('Hello changed with self inside the function')
+    }
+}
+
+studyMethodCorrect.log()
