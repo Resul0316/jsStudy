@@ -262,19 +262,28 @@ let greeting3 = function(name) {
 // https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-closure-b2f0d2152b36
 // closures
 // this topic is a bit confusing so I can check it later // 47-48
+function greet2(whattosay) {
+    return function (name) {
+        console.log(whattosay + ' ', name)
+    }
+}
+// greet2('Merhaba')('Muhammed') or
+let sayHi2 = greet2('merhaba')
+sayHi2('Resul')
+
 function buildFunctions() {
     var arr = [];
     for (var i= 0; i<3; i++) {
         arr.push(
             function() {
-                console.log(i)
+                console.log(i, 'i')
             }
         )
     }
     return arr;
 }
 let fs = buildFunctions();
-// these all three function calls will return 3 because when they are executed the result is alredy 3. 
+// these all three function calls will return 3 because when they declared with 'var'
 fs[0]()
 fs[1]()
 fs[2]()
@@ -299,6 +308,124 @@ fs2[1]()
 fs2[2]()
 
 // ******************
+
+//FUnction Factory:
+function makeGreeting(language) {
+
+    return function(firstname, lastname) {
+        if (language === 'en') {
+            console.log('Hello ' + firstname + ' ', + lastname)
+        }
+        if (language === 'es') {
+            console.log('Hola ' + firstname + ' ', + lastname)
+        }
+    }
+}
+
+let greetEnglish = makeGreeting('en')
+let greetSpanish = makeGreeting('es')
+
+greetEnglish('Resul', 'Avsar');
+greetSpanish('Mustafa', 'Gul')
+
+// *****************************
+// Closures and Callbacks
+
+function tellMewhenDone(callback) {
+    let a = 2000
+    callback();
+}
+
+tellMewhenDone(function () {
+    console.log('Hello I am callback')
+})
+
+// ********************************
+// CALL()
+// APPLY()
+// BIND()
+
+let person3 = {
+    firstname: 'Resul',
+    lastname: 'Avsar',
+    getFullName: function() {
+        let fullName = this.firstname + ' ' + this.lastname
+        return fullName
+    }
+}
+
+let logName = function(lang1, lang2) {
+    console.log('Logged: ' + this.getFullName())
+    console.log(lang1, lang2)
+}
+
+// logName() // this will create an error because getFullname() method is defined inside the person3.
+
+let logPersonName = logName.bind(person3); // .bind creates a copy of the whatever function you pass to it!
+
+logPersonName('en ');
+
+// CALL()
+// bind(doesn't execute the function it creates a copy but call executes it )
+logName.call(person3, 'es ', 'en') // unlike bind we can add multiple parameters to the call() functions
+
+// APPLY()
+logName.apply(person3, ['es ', 'es']) // it is same as call() but it has to be inside an array not in list like call()
+
+// function borrowing
+
+// function currying
+function multiply(a, b) {
+    return a * b
+}
+
+let multipleByTwo = multiply.bind(this, 2) // Here our multiply function passed as this // this means a = 2 and a fixed value for a.
+console.log(multipleByTwo(4))
+
+// Functional Programming // 52
+
+function mapForEach(arr, fn) {
+    let newArr = [];
+    for (let i=0; i<arr.length; i++) {
+        newArr.push(
+            fn((arr[i]))
+        )
+    }
+    return newArr
+}
+
+let arr3 = [1,2,3,4,5]
+console.log(arr3);
+
+let arr4 =mapForEach(arr3, function(item) {
+    return item * 2
+})
+console.log(arr4, 'arr4')
+
+let arr5 =mapForEach(arr3, function(item) {
+    return item > 2
+})
+console.log(arr5, 'arr5') // return boolean
+
+let checkPastLimit = function(limiter, item) {
+    return item > limiter;
+}
+
+let arr6 = mapForEach(arr3, checkPastLimit.bind(this, 1)); 
+console.log(arr6, 'arr6')
+
+// functional programming part-2 // 59
+//famous libraries in js 
+
+// UNDERSCORE.JS
+// LODASH
+
+// underscore
+var arr7 = _.map(arr1, function(item) { return item * 3 });
+console.log(arr6);
+
+var arr8 = _.filter([2,3,4,5,6,7], function(item) { return item % 2 === 0; });
+console.log(arr7);
 
 
 
